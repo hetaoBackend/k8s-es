@@ -1,0 +1,9 @@
+network.host: 0.0.0.0
+transport.tcp.port: 9300
+http.port: 9200
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+path.data: /home/work/data
+path.logs: /home/work/logs
+discovery.zen.ping.unicast.hosts: elasticsearch-discovery
+discovery.zen.minimum_master_nodes: 2
