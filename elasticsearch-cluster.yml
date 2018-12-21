@@ -78,11 +78,23 @@ spec:
             mountPath: /home/work/logs
           - name: data-volume
             mountPath: /home/work/data
+      initContainers:
+      - name: init-container
+        image: registry.cn-beijing.aliyuncs.com/shannonai/kube_init:v1.0.0
+        imagePullPolicy: "IfNotPresent"
+        volumeMounts:
+        - mountPath: /home/work/data
+          name: data-volume
+        - mountPath: /home/work/logs
+          name: logs-volume
+        - mountPath: /home/work/conf
+          name: conf-volume
+        args:
+        - init
+        - [[ DEPLOYMENT_URL ]]
       volumes:
         - name: "conf-volume"
-          hostPath:
-            path: /home/ubuntu/conf
-            type: Directory
+          emptyDir: {}
         - name: "logs-volume"
           emptyDir: {}
         - name: "data-volume"
@@ -154,11 +166,23 @@ spec:
               mountPath: /home/work/logs
             - name: conf-volume
               mountPath: /home/work/elasticsearch/config
+      initContainers:
+      - name: init-container
+        image: registry.cn-beijing.aliyuncs.com/shannonai/kube_init:v1.0.0
+        imagePullPolicy: "IfNotPresent"
+        volumeMounts:
+        - mountPath: /home/work/data
+          name: data-volume
+        - mountPath: /home/work/logs
+          name: logs-volume
+        - mountPath: /home/work/conf
+          name: conf-volume
+        args:
+        - init
+        - [[ DEPLOYMENT_URL ]]
       volumes:
         - name: "conf-volume"
-          hostPath:
-            path: /home/ubuntu/conf
-            type: Directory
+          emptyDir: {}
         - name: "logs-volume"
           emptyDir: {}
         - name: "data-volume"

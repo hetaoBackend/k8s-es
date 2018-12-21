@@ -1,0 +1,16 @@
+repo:
+  url: https://github.com/jiweil/es
+  branch: master
+  tag: v1.0.0
+  workdir: /
+mask:
+  conf/elasticsearch-template.yml:
+    CLUSTER_NAME: ES-Shannon
+    IS_MASTER: ${NODE_MASTER}
+    IS_DATA: ${NODE_DATA}
+    UNICAST_SERVICE: elasticsearch-discovery
+    MASTER_NUM: ${MASTER_NUM}
+    MEM_LOCK: false
+
+  conf/jvm-template.options:
+    HEAP_LIMIT: 1g
